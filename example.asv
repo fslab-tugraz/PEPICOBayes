@@ -1,7 +1,8 @@
 function example()
     % load example data
-    load('example_data.mat')
-    
+%     load('example_data.mat')
+    load('paper_input_data/data_measurement.mat')
+
     %%%%%%%%%%%%%%%%%%%%% INPUT %%%%%%%%%%%%%%%%%%%%%
     
     % Monte Carlo variables
@@ -83,8 +84,10 @@ function createFigures(E, q2, q2_std, q2_real, q2_timeseries, Pi)
             subplot(min(size(E,2),6), size(E,1), (i-1)*size(E, 1)+j)
             plot(squeeze(q2_timeseries(j, i, :)), 'Color', cm(j,:))
             ylabel(['$q_{',num2str(j),',',num2str(i),'}$'], 'FontSize',15)
-            pow = floor(log10(min(q2_timeseries(j,i,2000:end))));
-            ylim([floor(min(q2_timeseries(j,i,2000:end))*10^(-pow))*10^pow, ceil(min(q2_timeseries(j,i,2000:end))*10^(-pow))*10^pow])
+%             ylim([round(min(q2_timeseries(j,i,2000:end)),3)-eps, round(max(q2_timeseries(j,i,2000:end)),3)+eps])
+            pow = log10(min(q2_timeseries(j,i,2000:end)));
+            ylim(
+            ylim([round(min(q2_timeseries(j,i,2000:end)),3)-eps, round(max(q2_timeseries(j,i,2000:end)),3)+eps])
         end
         xlabel('k', 'FontSize',15)
     end
